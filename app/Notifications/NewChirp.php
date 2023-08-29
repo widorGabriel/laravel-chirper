@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Log;
 
 class NewChirp extends Notification
 {
@@ -18,7 +19,7 @@ class NewChirp extends Notification
      */
     public function __construct(public Chirp $chirp)
     {
-        //
+        Log::info(['Created on notify']);
     }
 
     /**
@@ -35,7 +36,7 @@ class NewChirp extends Notification
      * Get the mail representation of the notification.
      */
     public function toMail(object $notifiable): MailMessage
-    {
+    {Log::info(['Created on email notification'=>$this->chirp->message]);
         return (new MailMessage)
             /* ->line('The introduction to the notification.')
             ->action('Notification Action', url('/')) */
